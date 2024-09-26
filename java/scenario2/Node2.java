@@ -2,11 +2,11 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Node implements Runnable {
+public class Node2 implements Runnable {
 
-    BlockingQueue<Task> bq;
+    BlockingQueue<Task2> bq;
 
-    public Node(BlockingQueue<Task> bq){
+    public Node2(BlockingQueue<Task2> bq){
       this.bq = bq;
     }
 
@@ -14,7 +14,7 @@ public class Node implements Runnable {
     public void run() {
       while (true) {
         try {
-          Task task = bq.take();
+          Task2 task = bq.take();
           task.execute();
         } catch (Exception e) {
           System.out.println("Erro no node");

@@ -1,19 +1,19 @@
 import java.util.Random;
 
-public class Task implements Comparable<Task> {
+public class Task2 implements Comparable<Task2> {
     long id;
     boolean isFinished;
     long execDuration;
     int priority;
 
-    public Task(long id, int priority) {
+    public Task2(long id, int priority) {
         this.id = id;
         this.isFinished = false;
         this.priority = priority;
     }
 
     @Override
-    public int compareTo(Task arg0) {
+    public int compareTo(Task2 arg0) {
         return this.priority - arg0.priority;
     }
 

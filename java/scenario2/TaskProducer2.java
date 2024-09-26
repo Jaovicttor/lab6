@@ -8,18 +8,18 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.Executors;
 
-public class TaskProducer implements Runnable {
+public class TaskProducer2 implements Runnable {
 
-    BlockingQueue<Task> bq;
+    BlockingQueue<Task2> bq;
     AtomicInteger index;
-    List<Task> tasks;
+    List<Task2> tasks;
     ScheduledExecutorService es = Executors.newSingleThreadScheduledExecutor();
     int priority;
 
-    public TaskProducer(BlockingQueue<Task> bq, AtomicInteger index, int priority){
+    public TaskProducer2(BlockingQueue<Task2> bq, AtomicInteger index, int priority){
         this.bq = bq;
         this.index = index;
-        this.tasks = new ArrayList<Task>();
+        this.tasks = new ArrayList<Task2>();
         this.priority = priority;
     }
 
@@ -37,7 +37,7 @@ public class TaskProducer implements Runnable {
     }
 
     public void calculateMetrics() {
-        List<Task> filteredTasks = tasks
+        List<Task2> filteredTasks = tasks
         .stream()
         .filter((task) -> task.isFinished)
         .toList();
@@ -47,7 +47,7 @@ public class TaskProducer implements Runnable {
         long total = 0;
         String metrics = "";
 
-        for (Task task : filteredTasks) {
+        for (Task2 task : filteredTasks) {
             metrics += "Executado: " + task.id + " Duração: " + task.execDuration + "\n";
             total += task.execDuration;
         }
@@ -60,7 +60,7 @@ public class TaskProducer implements Runnable {
     @Override
     public void run() {
         this.es.scheduleAtFixedRate(() -> {
-            Task task = new Task(index.getAndIncrement(), this.priority);
+            Task2 task = new Task2(index.getAndIncrement(), this.priority);
             tasks.add(task);
             try {
                 this.bq.put(task);

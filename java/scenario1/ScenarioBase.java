@@ -11,7 +11,7 @@ public class ScenarioBase {
         AtomicInteger index = new AtomicInteger(0);
         ExecutorService producerExecutorService = Executors.newFixedThreadPool(5);
         ExecutorService consumerExecutorService = Executors.newFixedThreadPool(3);
-        BlockingQueue<Task> bq = new LinkedBlockingDeque<>(10);
+        BlockingQueue<Task> bq = new LinkedBlockingDeque<Task>(10);
         
         for (int i = 0; i < 5; i++) {
             producerExecutorService.execute(new TaskProducer(bq, index));

@@ -10,14 +10,14 @@ public class ScenarioBase {
         AtomicInteger index = new AtomicInteger(0);
         ExecutorService producerExecutorService = Executors.newFixedThreadPool(3);
         ExecutorService consumerExecutorService = Executors.newFixedThreadPool(3);
-        PriorityBlockingQueue<Task> bq = new PriorityBlockingQueue<Task>(10);
+        PriorityBlockingQueue<Task2> bq = new PriorityBlockingQueue<Task2>(10);
 
-        producerExecutorService.execute(new TaskProducer(bq, index, 0));
-        producerExecutorService.execute(new TaskProducer(bq, index, 1));
-        producerExecutorService.execute(new TaskProducer(bq, index, 2));
+        producerExecutorService.execute(new TaskProducer2(bq, index, 0));
+        producerExecutorService.execute(new TaskProducer2(bq, index, 1));
+        producerExecutorService.execute(new TaskProducer2(bq, index, 2));
 
         for (int i = 0; i < 3; i++) {
-            consumerExecutorService.execute(new Node(bq));
+            consumerExecutorService.execute(new Node2(bq));
         }
     }
 }
